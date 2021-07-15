@@ -89,3 +89,19 @@ kind-worker3          Ready    <none>                 95m   v1.21.1
   ...
 ```
 где key: node-role.kubernetes.io/master позволит размешать поды на нодах с master ролью.
+
+#Скопировать в README.md после мёрджа контроллера
+
+### Homework 3 kubernetes-security
+1. task01
+```
+kubectl apply -f bob-and-dave.yaml
+```
+2. task02
+```
+kubectl apply -f carol-and-other.yaml
+```
+3. task03
+```
+kubectl apply -f jane-and-ken.yaml
+```
