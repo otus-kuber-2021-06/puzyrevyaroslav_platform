@@ -18,6 +18,13 @@ spec:
   containers: 
   - name: web
     image: puzyrevyaroslav/nginx_otus_hw_1:latest
+    # readinessProbe:
+    #   httpGet:
+    #     path: /index.html
+    #     port: 80
+    livenessProbe:
+      tcpSocket:
+        port: 8000
     imagePullPolicy: Always
     volumeMounts:
     - name: app
@@ -37,4 +44,3 @@ spec:
     emptyDir: {}
   - name: logs
     emptyDir: {}
-
