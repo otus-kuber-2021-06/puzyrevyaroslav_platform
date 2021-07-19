@@ -7,7 +7,6 @@ metadata:
     k8s-app: kubernetes-dashboard
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
-    #kubernetes.io/ingress.allow-http: "true"
     nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
 spec:
   rules:
