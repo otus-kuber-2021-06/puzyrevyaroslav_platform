@@ -1,7 +1,8 @@
 # puzyrevyaroslav_platform
 puzyrevyaroslav Platform repository
-## Homeworks
-### Homework 1 kubernetes-intro
+## <b>Homeworks</b>
+<details>
+<summary>Homework 1 kubernetes-intro</summary>
 1. Испробовал функционал k9s, посмотрев документацию разобрался с причинами устойчивости munikube.
 Добавил необходимые описания в PR into main from kubernetes-prepare.
 
@@ -20,8 +21,9 @@ puzyrevyaroslav Platform repository
 Артефакт после билда hipster-frontend:
 
 - https://hub.docker.com/repository/docker/puzyrevyaroslav/hipster_frontend
-
-### Homework 2 kubernetes-controlers
+</details>
+<details>
+<summary>Homework 2 kubernetes-controlers</summary>
 >Определите, что необходимо добавить в манифест:
 
 Необходимо было добавить селектор следующего вида:
@@ -89,10 +91,10 @@ kind-worker3          Ready    <none>                 95m   v1.21.1
   ...
 ```
 где key: node-role.kubernetes.io/master позволит размешать поды на нодах с master ролью.
+</details>
+<details>
+<summary>Homework 3 kubernetes-security</summary>
 
-#Скопировать в README.md после мёрджа контроллера
-
-### Homework 3 kubernetes-security
 1. task01
 ```
 kubectl apply -f bob-and-dave.yaml
@@ -105,3 +107,35 @@ kubectl apply -f carol-and-other.yaml
 ```
 kubectl apply -f jane-and-ken.yaml
 ```
+</details>
+<details>
+<summary>Homework 4 kubernetes-network</summary>
+Выполнено домашнее задание, а также задание со звёздочкой.
+
+Описание заданий со звёздочкой:
+
+1. Были созданые 2 сервиса для tpc и udp протоколов 53го порта:
+
+```
+kubernetes-networks/coredns/coredns.yaml
+```
+2. Для доступности дэшборда k8s был добавлен ингресс с дополнительными аннтотациями от nginx:
+
+```yaml
+...
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+...
+```
+3. Для канареечного релиза была использована копия прошлых манифесто с небольшими изменениями в аннотациях от nginx.
+
+```yaml
+...
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/canary: "true"  
+    nginx.ingress.kubernetes.io/canary-weight: "50"
+...
+```
+</details>

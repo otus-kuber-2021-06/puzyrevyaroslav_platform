@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: production
+spec:
+  selector:
+    app: production
+  type: ClusterIP
+  clusterIP: None
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: canary
+spec:
+  selector:
+    app: canary
+  type: ClusterIP
+  clusterIP: None
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8000
