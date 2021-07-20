@@ -139,3 +139,11 @@ kubernetes-networks/coredns/coredns.yaml
 ...
 ```
 </details>
+<details>
+<summary>Homework 5 kubernetes-volumes</summary>
+
+1. Был поднят minio из sts манифеста предоставленного в ДЗ.
+
+2. Для задания со ⭐ был добавлен Secret в манифест, внутри которого данные  типа data автоматически энкодятся в строку при разворачивании pod из манифеста.
+
+</details>
