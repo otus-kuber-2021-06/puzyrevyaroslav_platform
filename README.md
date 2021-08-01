@@ -147,3 +147,77 @@ kubernetes-networks/coredns/coredns.yaml
 2. Для задания со ⭐ был добавлен Secret в манифест, внутри которого данные  типа data автоматически энкодятся в строку при разворачивании pod из манифеста.
 
 </details>
+<details>
+<summary>Homework 6 kubernetes-templating</summary>
+Домашнее задание выполнено на платформе YandexCloud. Используется helm v3.6.3.
+
+# cert-manager
+Для установки cert-manager согласно документации необходимо установить дополнительные CDR:
+```
+kubectl apply -f https://github.com/jetstack/cert-manager/releases/download/v1.4.0/cert-manager.crds.yaml
+```
+
+Для chartmuseum указаны корректнсые ip адреса, с развёрнутого nginx-ingress и был установлен без проблем, с валидными сертификатами от acme.
+
+# chartmuseum ⭐
+
+В работе с chartmuseum нет абсолютно ничего сложного
+```bash
+helm repo add %reponame% %repourl%
+cd chart/
+helm package .
+curl --data-binary "@chart-%version%.tgz" http://%repourl%:%port%/api/charts
+```
+*также можно использовать специальный плагин для helm*
+```
+helm push chart/ %reponame%
+```
+, кроме основных настроек: для того, чтобы работать с api необходимо при применении чарта указать параметр с слудующим значением:
+```yaml
+  DISABLE_API: false
+```
+# helmfile ⭐
+Файл описан по пути заданному в описании задания:
+```
+```
+Добавлены:
+```yaml
+- chart: stable/nginx 
+  version: 1.41.3
+- chart: jetstack/cert-manager 
+  version: 2.13.2
+- chart: harbor/harbor
+  version: 1.1.2
+```
+с обязательным изменением expose.ingress.hosts.core для harbor, иначе он работать не будет. :)
+
+# Создаём свой helm chart
+*Так как в задании не указано включать .tgz файлы в .gitignore, а вес файлов очень маленький- они были оставленные для наглядности.*
+
+Добавлены зависимости в Chart.yaml:
+```yaml
+...
+dependencies:
+- name: frontend
+  version: 0.1.0
+  repository: "file://../frontend"
+```
+# Создаём свой helm chart ⭐
+Добавлена зависимость в Chart.yaml:
+```yaml
+...
+- name: redis
+  version: "14.8.7"
+  repository: "@bitnami"
+```
+Также в values.yaml добавлена переменная:
+```yaml
+# for possible connect hipster-shop with standalone redis
+redisCart: redis-cart-headless:6379
+```
+# Работа с helm-secrets 
+При генерации gpg-ключей не возникло никаких проблем, также при шифровании секрета не было никаких сложностей.
+После установки просмотр секрета методом base64 -d показал корректное значение: hiddenValue%.
+# Kustomize
+Все файлы и манифесты по примеру из лекции были положены в директорию kustomize.
+</details>

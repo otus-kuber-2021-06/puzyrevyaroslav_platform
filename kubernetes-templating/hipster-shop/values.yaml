@@ -1,0 +1,7 @@
+redis:
+  architecture: standalone
+  auth:
+    enabled: false
+  fullnameOverride: "redis-cart"
+# for possible connect hipster shop with standalone redis
+redisCart: redis-cart-headless:6379
