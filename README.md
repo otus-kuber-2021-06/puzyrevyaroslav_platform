@@ -221,3 +221,13 @@ redisCart: redis-cart-headless:6379
 # Kustomize
 Все файлы и манифесты по примеру из лекции были положены в директорию kustomize.
 </details>
+</details>
+<details>
+<summary>Homework 7 kubernetes-operators</summary>
+
+1. Собран и запушен в публичный registry docker образ из исходников предоставленных в ДЗ.
+
+2. Добавлены предоставленные манифесты в папку deploy.
+
+p.s. работа оператора нестабильна, но вычислить в чём проблема не смог.
+</details>
