@@ -231,3 +231,19 @@ redisCart: redis-cart-headless:6379
 
 p.s. работа оператора нестабильна, но вычислить в чём проблема не смог.
 </details>
+<details>
+<summary>Homework 8 kubernetes-monitoring</summary>
+
+1. Взят дефолтный nginx вместе с nginx-prometheus-exporter, куда конфигмапом прокинут default.conf, указанный в конце deployment.yaml;
+2. Prometheus Operato установлен из helm chart:
+```bash
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+helm repo update
+helm upgrade --install kube-prometheus-stack prometheus-community/kube-prometheus-stack
+```
+3. Применёны манифесты deployment.yaml, service.yaml, servicemonitor.yaml:
+```bash
+kubectl apply -f kubernetes-monitoring/
+```
+4. Метрики отображаются в Prometheus.
+</details>
